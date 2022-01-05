@@ -1,10 +1,129 @@
-.App {
-  text-align: center;
+/* CSS HEX */
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --grey: #333333;
+
+  --primary: #20827c;
+  --primary-light: #58b2ab;
+  --primary-dark: #005550;
+  --secondary: #802183;
+  --secondary-light: #b253b3;
+  --secondary-lightest: #efdcef;
+  --secondary-dark: #500056;
+
+  --elevation-1: rgb(0 0 0 / 20%) 0px 2px 1px -1px,
+    rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
+  --elevation-3: rgb(0 0 0 / 20%) 0px 3px 3px -2px,
+    rgb(0 0 0 / 14%) 0px 3px 4px 0px, rgb(0 0 0 / 12%) 0px 1px 8px 0px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.background {
+  position: fixed;
+  z-index: -1;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--primary-light);
+}
+
+.App {
+  min-height: 100vh;
+  text-align: center;
+  color: var(--black);
+  max-width: 20rem;
+  margin: auto;
+  font-family: 'Open Sans', sans-serif;
+  padding: 5rem 0;
+  box-sizing: border-box;
+}
+
+header {
+  height: 3rem;
+  width: 100%;
+  background: var(--primary-dark);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  position: fixed;
+  z-index: 99;
+}
+
+form,
+fieldset {
+  width: 100%;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+fieldset button {
+  position: absolute;
+  right: 1rem;
+  top: calc(50% - 1.75rem);
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--secondary);
+  border-radius: 50%;
+  border: 0;
+  outline: none;
+  transition: ease-in-out 0.3s all;
+  box-shadow: var(--elevation-1);
+}
+
+button:hover {
+  box-shadow: var(--elevation-3);
+}
+
+button:focus {
+  background-color: var(--secondary-light);
+  box-shadow: rgb(0 0 0 / 20%) 0px 5px 5px -3px,
+    rgb(0 0 0 / 14%) 0px 8px 10px 1px, rgb(0 0 0 / 12%) 0px 3px 14px 2px;
+  box-shadow: var(--elevation-3);
+}
+
+button svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+button path {
+  fill: white;
+}
+
+.bus {
+  width: 2rem;
+  height: 2rem;
+}
+
+.bus path {
+  fill: var(--primary-dark);
+}
+
+.details {
+  transition: ease-in-out all 0.3s;
+  box-sizing: content-box;
+  color: hsla(0, 0%, 0%, 1);
+  background-color: var(--secondary-lightest);
+  overflow: hidden;
+  box-shadow: inset 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  border-radius: 0 0 4px 4px;
+  padding: 0 1rem;
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.details.show {
+  height: 5rem;
+}
+
+.details.hide {
+  height: 0rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -13,26 +132,202 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.location-card {
+  background-color: var(--white);
+  border-radius: 4px;
+  color: black;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  grid-gap: 0 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  height: 5rem;
+  font-size: 0.8rem;
+}
+
+.trip-card {
+  background-color: var(--white);
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.disclaimer {
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 2rem;
+  line-height: 2;
+  color: var(--primary-dark);
+}
+
+.card {
+  align-self: flex-end;
+  background-color: var(--white);
+  opacity: 0.5;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  padding: 1rem;
+  font-size: 0.8rem;
+  color: var(--grey);
+}
+
+.trip-card .summary {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  grid-gap: 0 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.avatar {
+  width: 5rem;
+  height: 5rem;
+  background-color: var(--primary-dark);
+  border-radius: 5%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  font-weight: 500;
+  font-size: 2rem;
+  font-family: 'Staatliches', cursive;
+  padding: 3px;
+}
+
+.avatar small {
+  font-size: 0.8rem;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.title {
+  color: #000000;
+  font-weight: 500;
+  display: block;
+  font-size: 1.2rem;
+  text-align: left;
+  color: var(--black);
+}
+
+.secondary-text {
+  color: var(--black);
+  font-weight: 400;
+  display: block;
+}
+
+.App-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 1rem;
+}
+
+fieldset {
+  border: none;
+  position: relative;
+  width: 100%;
+}
+
+input:focus-visible {
+  outline: none;
+  border: 0;
+  border-bottom: 2px solid var(--secondary);
+  box-shadow: var(--elevation-3);
+}
+
+.skeleton {
+  background: #eeeeee;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  height: 7rem;
+  box-shadow: var(--elevation-1);
+  animation: pulse infinite ease-in-out 1.5s;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.skeleton-location-card {
+  height: 5rem;
+}
+
+label {
+  color: #041029;
+  font-weight: 300;
+  position: absolute;
+  margin: 0.5rem;
+  margin-left: 0.7rem;
+  font-size: 0.8rem;
+  color: #666666;
+  font-weight: 400;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-family: 'Staatliches', cursive;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  padding-top: 2rem;
+  font-size: 1.5rem;
+  border-radius: 4px 4px 0 0;
+  border: none;
+  background-color: var(--white);
+  border-bottom: 2px solid var(--secondary-lightest);
+  transition: ease-in-out 0.3s all;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 }
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background-color: var(--secondary-lightest);
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  padding: 0.5rem 0.5rem 0.7rem 0.5rem;
+  text-align: center;
+  border-top: 1px solid var(--secondary-dark);
 }
